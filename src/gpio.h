@@ -94,12 +94,16 @@ bool gpio_unexport (gpio pin)
 
 bool gpio_direction (gpio pin, direction io)
 {
+
 	char path[35];
 	int file;
 	char directiontext [4];
 
 	sprintf(path, "%s%d%s", SYS_GPIO, pin, DIRECTIONS);
-	file = open(path, O_WRONLY);
+
+	printf("%s\n", path);
+	return false;
+	/*file = open(path, O_WRONLY);
 
 	if (file == -1) {
 		printf("ERROR:Failed to open direction!\n");
@@ -113,15 +117,13 @@ bool gpio_direction (gpio pin, direction io)
 	}
 
 	close(file);
-	return true;
+	return true;*/
 }
 
 bool gpio_setup (gpio pin, direction io)
 {
 	if (gpio_access(pin)) {
 		if (gpio_export(pin)) {
-			delay(1);
-			printf("Work until there\n");
 			if (gpio_direction(pin, io)) {
 				return true;
 			}
