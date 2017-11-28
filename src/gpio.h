@@ -124,6 +124,7 @@ bool gpio_setup (gpio pin, direction io)
 			if (gpio_direction(pin, io)) {
 				return true;
 			}
+			//Try a second time.
 			delay(2);
 			if (gpio_direction(pin, io)) {
 				return true;
@@ -195,5 +196,19 @@ bool gpio_set_val (gpio pin, gpio_level value)
 	close(file);
 	return true;
 }
+
+// frequency Hz, duty_cycle 0.0~100.0, run_time seconds
+void gpio_start_pwm (gpio pin, float frequency, float duty_cycle, float run_time)
+{
+	float total = run_time/frequency;
+	while (0<total) {
+		total -= 1/frequency;
+		gpio_set_val (pin, HIGH);
+		delay (duty_cycle/(100.0*frequency))
+		gpio_set_val (pin, LOW);
+		delay ((100.0-duty_cycle)/(100.0*frequency));
+	}
+}
+
 
 #endif /* SRC_GPIO_H_ */

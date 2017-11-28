@@ -10,21 +10,20 @@
 
 int main (int argc, char **argv)
 {
-	gpio trig, echo;
+	gpio motor = 23;
 
-	trig = 23;
-	echo = 24;
+	servo_stop (motor);
 
-
-	ultrasonic_stop(trig, echo);
-
-	if (!ultrasonic_setup(trig, echo)) {
-		printf("ERROR: failed to setup ultrasonic\n");
+	if (!servo_setup(motor)) {
+		printf("ERROR: failed to setup motor\n");
 		return 0;
 	}
-	while(true) {
-		printf("%f\n", ultrasonic_get_distance(trig, echo));
-	}
+
+	servo_set_angle (motor, 90);
+	delay(3);
+	servo_set_angle(motor, 0);
+
+	servo_stop(motor);
 
 	return 0;
 }

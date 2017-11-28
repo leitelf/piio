@@ -10,7 +10,7 @@
 
 
 #include "gpio.h"
-#include "time.h"
+#include <time.h>
 
 bool ultrasonic_setup (gpio trig, gpio echo)
 {
