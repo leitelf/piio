@@ -121,7 +121,7 @@ bool gpio_setup (gpio pin, direction io)
 	if (gpio_access(pin)) {
 		if (gpio_export(pin)) {
 			delay(0.5);
-			printf("Work until there\n", );
+			printf("Work until there\n");
 			if (gpio_direction(pin, io)) {
 				return true;
 			}
