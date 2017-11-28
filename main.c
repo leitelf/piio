@@ -15,6 +15,9 @@ int main (int argc, char **argv)
 	trig = 23;
 	echo = 24;
 
+
+	ultrasonic_stop(trig, echo);
+	
 	if (!ultrasonic_setup(trig, echo)) {
 		printf("ERROR: failed to setup ultrasonic\n");
 		return 0;

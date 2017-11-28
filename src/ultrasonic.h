@@ -26,6 +26,13 @@ bool ultrasonic_setup (gpio trig, gpio echo)
 	return false;
 }
 
+bool ultrasonic_stop (gpio trig, gpio echo)
+{
+	if (gpio_reset(trig) && gpio_reset(echo))
+		return true;
+	return false;
+}
+
 double ultrasonic_get_distance (gpio trig, gpio echo)
 {
 
