@@ -17,14 +17,18 @@ int main (int argc, char **argv)
 
 
 	ultrasonic_stop(trig, echo);
-	
+
 	if (!ultrasonic_setup(trig, echo)) {
 		printf("ERROR: failed to setup ultrasonic\n");
 		return 0;
 	}
-	while(true) {
-		printf("%f\n", ultrasonic_get_distance(trig, echo));
+	if (gpio_access(trig) || gpio_access(echo)) {
+		printf("%s\n", "failed");
+		return -1;
 	}
-
+	/*while(true) {
+		printf("%f\n", ultrasonic_get_distance(trig, echo));
+	}*/
+	printf("%s\n", "read problem");
 	return 0;
 }
