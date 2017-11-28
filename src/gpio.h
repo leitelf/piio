@@ -156,7 +156,7 @@ int gpio_get_val (gpio pin)
 	char directiontext [4];
 
 	sprintf(path, "%s%d%s", SYS_GPIO, pin, VALUES);
-	file = open(path, O_WRONLY);
+	file = open(path, O_RDONLY);
 
 	if (file == -1) {
 		printf("ERROR:Failed to open value!\n");

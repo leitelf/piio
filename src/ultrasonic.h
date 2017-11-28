@@ -36,7 +36,7 @@ bool ultrasonic_stop (gpio trig, gpio echo)
 double ultrasonic_get_distance (gpio trig, gpio echo)
 {
 
-	clock_t pulse_start, pulse_end;
+	clock_t pulse_start=1, pulse_end=1;
 	double distance;
 
 	if(gpio_access(trig) || gpio_access(echo)) {
