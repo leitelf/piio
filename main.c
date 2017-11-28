@@ -7,6 +7,7 @@
 
 #include "src/gpio.h"
 #include "src/ultrasonic.h"
+#include "src/servo.h"
 
 int main (int argc, char **argv)
 {
