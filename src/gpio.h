@@ -103,13 +103,13 @@ bool gpio_direction (gpio pin, direction io)
 
 	if (file == -1) {
 		printf("ERROR:Failed to open direction!\n");
-		return true;
+		return false;
 	}
 	sprintf(directiontext, "%s", ((io==INPUT)?"in":"out"));
 	if (write(file, directiontext, 4) == -1) {
 		printf("ERROR:Failed to write in directions!\n");
 		close(file);
-		return true;
+		return false;
 	}
 
 	close(file);
@@ -120,10 +120,11 @@ bool gpio_setup (gpio pin, direction io)
 {
 	if (gpio_access(pin)) {
 		if (gpio_export(pin)) {
-
-			printf("Work until there\n");
-			delay(10);
-			printf("Work until there\n");
+			delay(2);
+			if (gpio_direction(pin, io)) {
+				return true;
+			}
+			delay(2);
 			if (gpio_direction(pin, io)) {
 				return true;
 			}
