@@ -15,14 +15,16 @@ int main (int argc, char **argv)
 	trig = 23;
 	echo = 24;
 
+	gpio_setup(trig, OUTPUT);
+
+/*
 	if (!ultrasonic_setup(trig, echo)) {
 		printf("ERROR: failed to setup ultrasonic\n");
 		return 0;
-	}
-	while(true) {
+	}*/
+	/*while(true) {
 		printf("%f\n", ultrasonic_get_distance(trig, echo));
 	}
-
+*/
 	return 0;
 }
-
