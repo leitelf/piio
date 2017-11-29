@@ -144,7 +144,7 @@ bool pwm_set_duty_cycle (float duty_cycle)
 	char value[35];
 	int file;
 	if (period > 0) {
-		duty_cycle_size = period * (int) (duty_cycle/100.0);
+		duty_cycle_size = (int)((float)period)*(duty_cycle/100.0);
 		file = open (SYS_PWM0_DUTY_CYCLE, O_WRONLY);
 		sprintf(value, "%d", duty_cycle_size);
 		if (file == -1) {
