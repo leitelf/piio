@@ -77,8 +77,8 @@ bool pwm_unexport ()
 bool pwm_set_frequency (float frequency) {
   int period = (int) (1000000000.0/frequency);
   int file = open(SYS_PWM0_PERIOD, O_WRONLY);
-  char value[33];
-	itoa(period, value, 10);
+  char value[35];
+	sprintf(value, "%d", period);
   if (file == -1) {
     printf("ERROR: failed to open period!\n");
     return false;
@@ -140,12 +140,12 @@ bool pwm_set_duty_cycle (float duty_cycle)
 {
 	int period = pwm_get_period();
 	int duty_cycle_size = 0;
-	char value[33];
+	char value[35];
 	int file;
 	if (period > 0) {
 		duty_cycle_size = period * (int) (duty_cycle/100.0);
 		file = open (SYS_PWM0_DUTY_CYCLE, O_WRONLY);
-		itoa(duty_cycle_size, value, 10);
+		sprintf(value, "%d", duty_cycle_size);
 		if (file == -1) {
 			printf("ERROR: failed to open duty_cycle!\n");
 			return false;
