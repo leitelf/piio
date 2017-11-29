@@ -109,10 +109,9 @@ bool pwm_setup (float frequency)
 
 bool pwm_reset ()
 {
-	if (!pwm_access()) {
-		if (pwm_unexport()) {
-			return true;
-		}
+
+	if (pwm_unexport()) {
+		return true;
 	}
 
 	printf("Can't reset GPIO\n");
