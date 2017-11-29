@@ -96,6 +96,7 @@ bool pwm_setup (float frequency)
 {
 	if (pwm_access()) {
 		if (pwm_export()) {
+			delay(1.2);
       if (pwm_set_frequency(frequency)) {
           return true;
       }
