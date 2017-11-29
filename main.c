@@ -19,10 +19,12 @@ int main (int argc, char **argv)
 		return 0;
 	}
 
+	printf("%s\n", "rotate 90!");
 	servo_set_angle (90.0);
 	delay(3);
+	printf("%s\n", "rotate 0!");
 	servo_set_angle(0.0);
-
+	printf("%s\n", "done!");
 	servo_reset();
 
 	return 0;

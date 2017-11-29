@@ -169,7 +169,7 @@ bool pwm_start ()
 		printf("ERROR: failed to open enable!\n");
 		return false;
 	}
-	if (write (file, "1", 1) == -1) {
+	if (write (file, "1", 2) == -1) {
 		printf("ERROR: failed to write in enable!\n");
 		close(file);
 		return false;
@@ -185,7 +185,7 @@ bool pwm_stop ()
 		printf("ERROR: failed to open enable!\n");
 		return false;
 	}
-	if (write (file, "0", 1) == -1) {
+	if (write (file, "0", 2) == -1) {
 		printf("ERROR: failed to write in enable!\n");
 		close(file);
 		return false;
