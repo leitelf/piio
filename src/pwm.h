@@ -20,7 +20,7 @@
 
 #define SYS_PWM "/sys/class/pwm/pwmchip0/"
 #define SYS_PWM_EXPORT "/sys/class/pwm/pwmchip0/export"
-#define SYS_PWM_UNEXPORT "/sys/class/pwm/pwmchip0/export"
+#define SYS_PWM_UNEXPORT "/sys/class/pwm/pwmchip0/unexport"
 
 #define SYS_PWM0 "/sys/class/pwm/pwmchip0/pwm0/"
 #define SYS_PWM0_PERIOD "/sys/class/pwm/pwmchip0/pwm0/period"
@@ -109,9 +109,10 @@ bool pwm_setup (float frequency)
 
 bool pwm_reset ()
 {
-
-	if (pwm_unexport()) {
-		return true;
+	if (!pwm_access()) {
+		if (pwm_unexport()) {
+			return true;
+		}
 	}
 
 	printf("Can't reset GPIO\n");
