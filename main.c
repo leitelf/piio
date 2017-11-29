@@ -21,10 +21,10 @@ int main (int argc, char **argv)
 
 	printf("%s\n", "rotate 90!");
 	servo_set_angle (90.0);
-	delay(3);
+	sleep(3);
 	printf("%s\n", "rotate 0!");
 	servo_set_angle(0.0);
-
+	sleep(3);
 	servo_reset();
 
 	return 0;
