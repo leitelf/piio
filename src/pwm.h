@@ -28,7 +28,7 @@
 
 bool pwm_access ()
 {
-	if (access(SYS_PWM_PERIOD, F_OK) != -1) {
+	if (access(SYS_PWM0_PERIOD, F_OK) != -1) {
 		return false;
 	} else {
 		return true;
@@ -162,7 +162,7 @@ bool pwm_set_duty_cycle (float duty_cycle)
 
 bool pwm_start ()
 {
-	int file = open (SYS_PMW0_ENABLE, O_WRONLY);
+	int file = open (SYS_PWM0_ENABLE, O_WRONLY);
 	if (file == -1) {
 		printf("ERROR: failed to open enable!\n");
 		return false;
@@ -178,7 +178,7 @@ bool pwm_start ()
 
 bool pwm_stop ()
 {
-	int file = open (SYS_PMW0_ENABLE, O_WRONLY);
+	int file = open (SYS_PWM0_ENABLE, O_WRONLY);
 	if (file == -1) {
 		printf("ERROR: failed to open enable!\n");
 		return false;
