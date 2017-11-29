@@ -10,33 +10,27 @@
 
 
 #include "gpio.h"
+#include "pwm.h"
 #include <time.h>
 
-bool servo_setup (gpio pin)
+bool servo_setup ()
 {
-	if (gpio_setup(pin, OUTPUT)) {
-		return true;
-	}
-
-	gpio_reset(pin);
-
-	return false;
+	return pwm_setup(100.0);
 }
 
-void servo_set_angle (gpio pin, float angle)
+void servo_set_angle (float angle)
 {
-  float duty_cycle = angle / 18 + 2;
-  gpio_start_pwm (pin, 50.0, duty_cycle, 1);
-  gpio_set_val (pin, LOW);
+  float duty_cycle = (angle / 180 + 1)*5.0;
+  pwm_set_duty_cycle (duty_cycle);
+	pwm_start();
+	delay(1);
+	pwm_set_duty_cycle (0.0);
+	pwm_stop();
 }
 
-bool servo_stop (gpio pin)
+
+bool servo_reset ()
 {
-  if (gpio_reset(pin)) {
-    return true;
-  }
-
-  return false;
+	return pwm_reset();
 }
-
 #endif /* SRC_SERVO_H_ */

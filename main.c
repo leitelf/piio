@@ -11,20 +11,19 @@
 
 int main (int argc, char **argv)
 {
-	gpio motor = 23;
 
-	servo_stop (motor);
+	servo_reset ();
 
-	if (!servo_setup(motor)) {
+	if (!servo_setup()) {
 		printf("ERROR: failed to setup motor\n");
 		return 0;
 	}
 
-	servo_set_angle (motor, 90);
+	servo_set_angle (90.0);
 	delay(3);
-	servo_set_angle(motor, 0);
+	servo_set_angle(0.0);
 
-	servo_stop(motor);
+	servo_reset();
 
 	return 0;
 }
