@@ -16,15 +16,15 @@
 
 bool servo_setup ()
 {
-	return pwm_setup(100.0);
+	return pwm_setup(50.0);
 }
 
 void servo_set_angle (float angle)
 {
-  float duty_cycle = (angle / 180 + 1)*5.0;
+  float duty_cycle = (angle / 18 +2);
   pwm_set_duty_cycle (duty_cycle);
 	pwm_start();
-	sleep(3);
+	delay(1);
 	pwm_stop();
 	pwm_set_duty_cycle (0.0);
 }
