@@ -1,5 +1,5 @@
 /*
- * gpio.h
+ * pwm.h
  *
  *  Created on: 28 de nov de 2017
  *      Author: luiz
@@ -11,8 +11,8 @@
  *
  */
 
-#ifndef SRC_GPIO_H_
-#define SRC_GPIO_H_
+#ifndef SRC_PWM_H_
+#define SRC_PWM_H_
 
 #include "gpio.h"
 
@@ -192,4 +192,4 @@ bool pwm_stop ()
 	return true;
 }
 
-#endif /* SRC_GPIO_H_ */
+#endif /* SRC_PWM_H_ */
