@@ -24,7 +24,7 @@ int main (int argc, char **argv)
 	delay(3);
 	printf("%s\n", "rotate 0!");
 	servo_set_angle(0.0);
-	printf("%s\n", "done!");
+
 	servo_reset();
 
 	return 0;

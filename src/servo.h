@@ -23,10 +23,9 @@ void servo_set_angle (float angle)
   float duty_cycle = (angle / 180 + 1)*5.0;
   pwm_set_duty_cycle (duty_cycle);
 	pwm_start();
-
-	delay(2);
-	pwm_set_duty_cycle (0.0);
+	delay(3);
 	pwm_stop();
+	pwm_set_duty_cycle (0.0);
 }
 
 
