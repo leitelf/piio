@@ -16,6 +16,7 @@
 
 #include "gpio.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 #define SYS_PWM "/sys/class/pwm/pwmchip0/"
 #define SYS_PWM_EXPORT "/sys/class/pwm/pwmchip0/export"
