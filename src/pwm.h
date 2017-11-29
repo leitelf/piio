@@ -17,18 +17,18 @@
 #include "gpio.h"
 
 #define SYS_PWM "/sys/class/pwm/pwmchip0/"
-#define SYS_EXPORT "/sys/class/pwm/pwmchip0/export"
-#define SYS_UNEXPORT "/sys/class/pwm/pwmchip0/export"
+#define SYS_PWM_EXPORT "/sys/class/pwm/pwmchip0/export"
+#define SYS_PWM_UNEXPORT "/sys/class/pwm/pwmchip0/export"
 
 #define SYS_PWM0 "/sys/class/pwm/pwmchip0/pwm0/"
-#define SYS_PERIOD "/sys/class/pwm/pwmchip0/pwm0/period"
-#define SYS_DUTY_CYCLE "/sys/class/pwm/pwmchip0/pwm0/duty_cycle"
-#define SYS_ENABLE "/sys/class/pwm/pwmchip0/pwm0/enable"
+#define SYS_PWM0_PERIOD "/sys/class/pwm/pwmchip0/pwm0/period"
+#define SYS_PWM0_DUTY_CYCLE "/sys/class/pwm/pwmchip0/pwm0/duty_cycle"
+#define SYS_PWM0_ENABLE "/sys/class/pwm/pwmchip0/pwm0/enable"
 
 
 bool pwm_access ()
 {
-	if (access(SYS_PERIOD, F_OK) != -1) {
+	if (access(SYS_PWM_PERIOD, F_OK) != -1) {
 		return false;
 	} else {
 		return true;
@@ -38,7 +38,7 @@ bool pwm_access ()
 
 bool pwm_export ()
 {
-	int file = open(SYS_EXPORT, O_WRONLY);
+	int file = open(SYS_PWM_EXPORT, O_WRONLY);
 
 	if (file == -1) {
 		printf("ERROR:Failed to open export!\n");
@@ -57,7 +57,7 @@ bool pwm_export ()
 
 bool pwm_unexport ()
 {
-	int file = open(SYS_UNEXPORT, O_WRONLY);
+	int file = open(SYS_PWM_UNEXPORT, O_WRONLY);
 	if (file == -1) {
 		printf("ERROR:Failed to open unexport!\n");
 		return false;
@@ -74,7 +74,7 @@ bool pwm_unexport ()
 
 bool pwm_set_frequency (float frequency) {
   int period = (int) (1000000000.0/frequency);
-  int file = open(SYS_PERIOD, O_WRONLY);
+  int file = open(SYS_PWM0_PERIOD, O_WRONLY);
   char value[33];
 	itoa(period, value, 10);
   if (file == -1) {
@@ -100,7 +100,7 @@ bool pwm_setup (float frequency)
 		}
 	}
 
-	printf("Can't setup GPIO%d", pin);
+	printf("Can't setup GPIO\n");
 	return false;
 }
 
@@ -112,14 +112,14 @@ bool pwm_reset ()
 		}
 	}
 
-	printf("Can't reset GPIO%d", pin);
+	printf("Can't reset GPIO\n");
 	return false;
 }
 
 int pwm_get_period ()
 {
 	char period[35];
-	int file = open(SYS_PERIOD, O_RDONLY);
+	int file = open(SYS_PWM0_PERIOD, O_RDONLY);
 	if (file == -1) {
 		printf("ERROR: failed to open period!\n");
 		return -1;
@@ -142,7 +142,7 @@ bool pwm_set_duty_cycle (float duty_cycle)
 	int file;
 	if (period > 0) {
 		duty_cycle_size = period * (int) (duty_cycle/100.0);
-		file = open (SYS_DUTY_CYCLE, O_WRONLY);
+		file = open (SYS_PWM0_DUTY_CYCLE, O_WRONLY);
 		itoa(duty_cycle_size, value, 10);
 		if (file == -1) {
 			printf("ERROR: failed to open duty_cycle!\n");
@@ -162,7 +162,7 @@ bool pwm_set_duty_cycle (float duty_cycle)
 
 bool pwm_start ()
 {
-	int file = open (SYS_ENABLE, O_WRONLY);
+	int file = open (SYS_PMW0_ENABLE, O_WRONLY);
 	if (file == -1) {
 		printf("ERROR: failed to open enable!\n");
 		return false;
@@ -178,7 +178,7 @@ bool pwm_start ()
 
 bool pwm_stop ()
 {
-	int file = open (SYS_ENABLE, O_WRONLY);
+	int file = open (SYS_PMW0_ENABLE, O_WRONLY);
 	if (file == -1) {
 		printf("ERROR: failed to open enable!\n");
 		return false;
