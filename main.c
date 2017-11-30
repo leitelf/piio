@@ -20,13 +20,13 @@ int main (int argc, char **argv)
 
 	float distance1, distance2;
 	ultrasonic_stop (trig1, echo1);
-	ultrasonic_stop (trig2, echo2);
+	//ultrasonic_stop (trig2, echo2);
 
 	servo_reset ();
 
 	printf("Setting up ultrasonic...\n");
 	ultrasonic_setup (trig1, echo1);
-	ultrasonic_setup (trig2, echo2);
+	//ultrasonic_setup (trig2, echo2);
 
 	printf("Setting up servo...\n");
 	servo_setup ();
@@ -34,9 +34,9 @@ int main (int argc, char **argv)
 	printf("System started!\n");
 	while (1) {
 		distance1 = ultrasonic_get_distance (trig1, echo1);
-		distance2 = ultrasonic_get_distance (trig2, echo2);
-		printf("%.2f, %.2f\n", distance1, distance2);
-		if ((distance1 < 20.0) && (distance2 < 20.0)) {
+		//distance2 = ultrasonic_get_distance (trig2, echo2);
+		//printf("%.2f, %.2f\n", distance1, distance2);
+		if ((distance1 < 20.0) /*&& (distance2 < 20.0)*/) {
 			printf("%s\n", "Opening the gate...");
 			servo_set_angle(90);
 			delay(3);
