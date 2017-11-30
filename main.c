@@ -16,12 +16,12 @@ int main (int argc, char **argv)
 	gpio echo1 = 24;
 
 	gpio trig2 = 2;
-	gpio echi2 = 3;
+	gpio echo2 = 3;
 
 	float distance1, distance2;
 
-	ultrasonic_stop (23, 24);
-	ultrasonic_stop (2, 3);
+	ultrasonic_stop (trig1, echo1);
+	ultrasonic_stop (trig2, echo2);
 
 	servo_reset ();
 
