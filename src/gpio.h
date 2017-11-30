@@ -33,10 +33,9 @@ typedef enum {LOW, HIGH} gpio_level;
 void delay (int seconds)
 {
 	struct timespec t;
-	int seg;
-	seg = seconds;
-	t.tv_sec = seg;
-	t.tv_nsec = (seconds-seg)*1e9;
+
+	t.tv_sec = seconds;
+	t.tv_nsec = 0;
 	nanosleep(&t, NULL);
 }
 
