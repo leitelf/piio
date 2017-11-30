@@ -19,18 +19,19 @@ int main (int argc, char **argv)
 	gpio echo2 = 3;
 
 	float distance1, distance2;
-
 	ultrasonic_stop (trig1, echo1);
 	ultrasonic_stop (trig2, echo2);
 
 	servo_reset ();
 
+	printf("Setting up ultrasonic...\n");
 	ultrasonic_setup (trig1, echo1);
 	ultrasonic_setup (trig2, echo2);
 
+	printf("Setting up servo...\n");
 	servo_setup ();
 
-	while (true) {
+	while (1) {
 		distance1 = ultrasonic_get_distance (trig1, echo1);
 		distance2 = ultrasonic_get_distance (trig2, echo2);
 		printf("%.2f, %.2f\n", distance1, distance2);
