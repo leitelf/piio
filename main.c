@@ -12,20 +12,35 @@
 int main (int argc, char **argv)
 {
 
+	gpio trig1 = 23;
+	gpio echo1 = 24;
+
+	gpio trig2 = 2;
+	gpio echi2 = 3;
+
+	float distance1, distance2;
+
+	ultrasonic_stop (23, 24);
+	ultrasonic_stop (2, 3);
+
 	servo_reset ();
 
-	if (!servo_setup()) {
-		printf("ERROR: failed to setup motor\n");
-		return 0;
+	ultrasonic_setup (trig1, echo1);
+	ultrasonic_setup (trig2, echo2);
+
+	servo_setup ();
+
+	while (true) {
+		distance1 = ultrasonic_get_distance (trig1, echo1);
+		distance2 = ultrasonic_get_distance (trig2, echo2);
+
+		if (distance1 < 20.0) && (distance2 < 20.0) {
+			printf("%s\n", "Opening the gate...");
+			servo_set_angle(90);
+			delay(3);
+			printf("%s\n", "Closing the gate...");
+			servo_set_angle(0);
+		}
 	}
-
-	printf("%s\n", "rotate 90!");
-	servo_set_angle (90.0);
-	delay(3);
-	printf("%s\n", "rotate 0!");
-	servo_set_angle(0.0);
-	delay(3);
-	servo_reset();
-
 	return 0;
 }
