@@ -46,7 +46,7 @@ double ultrasonic_get_distance (gpio trig, gpio echo)
 		return 0;
 	}
 	gpio_set_val(trig, HIGH);
-	mdelay(0.01);
+	mdelay(0.0001);
 	gpio_set_val(trig, LOW);
 
 	while (gpio_get_val(echo) == LOW) {
