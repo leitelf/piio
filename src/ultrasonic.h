@@ -57,8 +57,7 @@ float ultrasonic_get_distance (gpio trig, gpio echo)
 		pulse_end = clock();
 	}
 
-
-	return ((float) (pulse_end-pulse_start)*17150/CLOCKS_PER_SEC);
+	return ((float) (pulse_end-pulse_start)*17150.0/CLOCKS_PER_SEC);
 }
 
 
