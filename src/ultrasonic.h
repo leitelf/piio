@@ -62,6 +62,10 @@ float ultrasonic_get_distance (gpio trig, gpio echo)
 
 	interval = 1000000*(pulse_end - pulse_start)/CLOCKS_PER_SEC;
 
+	if (interval <= 294.117647059) {
+		return 5.0;
+	}
+	
 	return (float) interval*0.034/2.0;
 	//return ((float) (pulse_end-pulse_start)*17150.0/CLOCKS_PER_SEC);
 }
