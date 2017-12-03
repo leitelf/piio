@@ -3,8 +3,8 @@
 
 int main (int argc, char **argv)
 {
-  gpio trig = atoi (argc[1]);
-  gpio echo = atoi (argc[2]);
+  gpio trig = atoi (argv[1]);
+  gpio echo = atoi (argv[2]);
 
   float distance = 0;
 
