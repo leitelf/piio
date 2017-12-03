@@ -31,18 +31,18 @@ int main (int argc, char **argv)
 	printf("Setting up servo...\n");
 	servo_setup ();
 
-/*	printf("System started!\n");
+	printf("System started!\n");
 	while (1) {
 		distance1 = ultrasonic_get_distance (trig1, echo1);
 		distance2 = ultrasonic_get_distance (trig2, echo2);
-		// printf("%.2f, %.2f\n", distance1, distance2);
-		if ((distance1 < 20.0) && (distance2 < 20.0)) {
+		printf("%.2f, %.2f\n", distance1, distance2);
+		/*if ((distance1 < 20.0) && (distance2 < 20.0)) {
 			printf("%s\n", "Opening the gate...");
 			servo_set_angle(90);
 			delay(3);
 			printf("%s\n", "Closing the gate...");
 			servo_set_angle(0);
-		}
-	}*/
+		}*/
+	}
 	return 0;
 }
