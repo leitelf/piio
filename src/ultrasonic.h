@@ -12,47 +12,62 @@
 #include "gpio.h"
 #include <time.h>
 
+typedef struct {
+	gpio trig;
+	gpio echo;
+} ultrasonic;
 
-bool ultrasonic_setup (gpio trig, gpio echo)
+void ultrasonic_set_trig (ultrasonic *u, gpio trig)
 {
-	if (gpio_setup(trig, OUTPUT)) {
-		if (gpio_setup(echo, INPUT)) {
+	u->trig = trig;
+	return true;
+}
+
+void ultrasonic_set_echo (ultrasonic *u, gpio echo)
+{
+	u->echo = echo;
+}
+
+bool ultrasonic_setup (ultrasonic u)
+{
+	if (gpio_setup(u.trig, OUTPUT)) {
+		if (gpio_setup(u.echo, INPUT)) {
 			return true;
 		}
 	}
 
-	gpio_reset(trig);
-	gpio_reset(echo);
+	gpio_reset(u.trig);
+	gpio_reset(u.echo);
 
 	return false;
 }
 
-bool ultrasonic_stop (gpio trig, gpio echo)
+bool ultrasonic_stop (ultrasonic u)
 {
-	if (gpio_reset(trig) && gpio_reset(echo))
+	if (gpio_reset(u.trig) && gpio_reset(u.echo))
 		return true;
 	return false;
 }
 
-double ultrasonic_get_distance (gpio trig, gpio echo)
+double ultrasonic_get_distance (ultrasonic u)
 {
 
 	clock_t pulse_start=1, pulse_end=1;
 	float distance;
 
-	if(gpio_access(trig) || gpio_access(echo)) {
+	if(gpio_access(u.trig) || gpio_access(u.echo)) {
 		printf("ERROR: trig or echo not setted up.\n");
 		return 0;
 	}
-	gpio_set_val(trig, HIGH);
+	gpio_set_val(u.trig, HIGH);
 	mdelay(0.01);
-	gpio_set_val(trig, LOW);
+	gpio_set_val(u.trig, LOW);
 
-	while (gpio_get_val(echo) == LOW) {
+	while (gpio_get_val(u.echo) == LOW) {
 		pulse_start = clock();
 	}
 
-	while (gpio_get_val(echo) == HIGH) {
+	while (gpio_get_val(u.echo) == HIGH) {
 		pulse_end = clock();
 	}
 
