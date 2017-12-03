@@ -40,6 +40,7 @@ float ultrasonic_get_distance (gpio trig, gpio echo)
 
 	clock_t pulse_start=1, pulse_end=1;
 	float distance;
+	double interval = 0.0;
 
 	if(gpio_access(trig) || gpio_access(echo)) {
 		printf("ERROR: trig or echo not setted up.\n");
@@ -59,7 +60,9 @@ float ultrasonic_get_distance (gpio trig, gpio echo)
 		pulse_end = clock();
 	}
 
-	return (float) ((pulse_end - pulse_start)*0.034/(2.0*CLOCKS_PER_SEC));
+	interval = 1000000*(pulse_end - pulse_start)/CLOCKS_PER_SEC;
+
+	return (float) interval*0.034/2.0;
 	//return ((float) (pulse_end-pulse_start)*17150.0/CLOCKS_PER_SEC);
 }
 
