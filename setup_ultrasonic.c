@@ -1,5 +1,5 @@
 #include "src/ultrasonic.h"
-#include "srv/gpio.h"
+#include "src/gpio.h"
 
 int main (int argc, char **argv)
 {
@@ -9,6 +9,6 @@ int main (int argc, char **argv)
   float distance = 0;
 
   ultrasonic_setup (trig, echo);
-  
+
   return 0;
 }
