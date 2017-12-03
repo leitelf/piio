@@ -47,9 +47,9 @@ float ultrasonic_get_distance (gpio trig, gpio echo)
 		return 0;
 	}
 	gpio_set_val(trig, LOW);
-	mdelay(0.00002);
+	mdelay(0.1);
 	gpio_set_val(trig, HIGH);
-	mdelay(0.0001);
+	mdelay(0.01);
 	gpio_set_val(trig, LOW);
 
 	while (gpio_get_val(echo) == LOW) {
@@ -65,7 +65,7 @@ float ultrasonic_get_distance (gpio trig, gpio echo)
 	if (interval <= 294.117647059) {
 		return 5.0;
 	}
-	
+
 	return (float) interval*0.034/2.0;
 	//return ((float) (pulse_end-pulse_start)*17150.0/CLOCKS_PER_SEC);
 }
