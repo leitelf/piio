@@ -1,5 +1,5 @@
 #include "src/ultrasonic.h"
-#include "src /gpio.h"
+#include "src/gpio.h"
 
 int main (int argc, char **argv)
 {
