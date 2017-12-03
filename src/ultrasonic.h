@@ -35,7 +35,7 @@ bool ultrasonic_stop (gpio trig, gpio echo)
 	return false;
 }
 
-double ultrasonic_get_distance (gpio trig, gpio echo)
+float ultrasonic_get_distance (gpio trig, gpio echo)
 {
 
 	clock_t pulse_start=1, pulse_end=1;
@@ -46,7 +46,7 @@ double ultrasonic_get_distance (gpio trig, gpio echo)
 		return 0;
 	}
 	gpio_set_val(trig, HIGH);
-	mdelay(0.0001);
+	mdelay(0.1);
 	gpio_set_val(trig, LOW);
 
 	while (gpio_get_val(echo) == LOW) {
