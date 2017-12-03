@@ -20,7 +20,6 @@ typedef struct {
 void ultrasonic_set_trig (ultrasonic *u, gpio trig)
 {
 	u->trig = trig;
-	return true;
 }
 
 void ultrasonic_set_echo (ultrasonic *u, gpio echo)
