@@ -31,7 +31,7 @@ int main (int argc, char **argv)
 	printf("Setting up servo...\n");
 	servo_setup ();
 
-	printf("System started!\n");
+/*	printf("System started!\n");
 	while (1) {
 		distance1 = ultrasonic_get_distance (trig1, echo1);
 		distance2 = ultrasonic_get_distance (trig2, echo2);
@@ -43,6 +43,6 @@ int main (int argc, char **argv)
 			printf("%s\n", "Closing the gate...");
 			servo_set_angle(0);
 		}
-	}
+	}*/
 	return 0;
 }
