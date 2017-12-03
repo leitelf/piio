@@ -39,6 +39,15 @@ void delay (int seconds)
 	nanosleep(&t, NULL);
 }
 
+void mdelay (double ms)
+{
+ 	long double ns = ms*1000000.0;
+	struct timespec t;
+	t.tv_sec = 0.0;
+	t.tv_nsec = ns;
+	nanosleep(&t, NULL);
+}
+
 bool gpio_access (gpio pin)
 {
 	char path[35];

@@ -12,6 +12,7 @@
 #include "gpio.h"
 #include <time.h>
 
+
 bool ultrasonic_setup (gpio trig, gpio echo)
 {
 	if (gpio_setup(trig, OUTPUT)) {
@@ -44,7 +45,7 @@ double ultrasonic_get_distance (gpio trig, gpio echo)
 		return 0;
 	}
 	gpio_set_val(trig, HIGH);
-	delay(0.00001);
+	mdelay(0.01);
 	gpio_set_val(trig, LOW);
 
 	while (gpio_get_val(echo) == LOW) {
