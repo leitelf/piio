@@ -30,7 +30,8 @@ int main (int argc, char **argv)
       return -1;
     }
     angle = atof(argv[2]);
-    return  servo_set_angle (angle);
+    servo_set_angle (angle);
+    return 0;
   }
 
   if (strcmp("reset", argv[1]) == 0) {
