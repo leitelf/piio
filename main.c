@@ -35,8 +35,8 @@ int main (int argc, char **argv)
 	while (1) {
 		distance1 = ultrasonic_get_distance (trig1, echo1);
 		distance2 = ultrasonic_get_distance (trig2, echo2);
-		printf("%.2f, %.2f\n", distance1, distance2);
-		if ((distance1 < 10.0) && (distance2 < 10.0)) {
+		//printf("%.2f, %.2f\n", distance1, distance2);
+		if ((distance1 < 16.0) && (distance2 < 16.0)) {
 			printf("%s\n", "Opening the gate...");
 			servo_set_angle(90);
 			delay(3);
