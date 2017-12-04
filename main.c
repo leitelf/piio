@@ -33,9 +33,6 @@ int main (int argc, char **argv)
 
 	printf("System started!\n");
 	while (1) {
-		system("echo", "\"Running system call\n\"");
-
-
 		distance1 = ultrasonic_get_distance (trig1, echo1);
 		distance2 = ultrasonic_get_distance (trig2, echo2);
 		//printf("%.2f, %.2f\n", distance1, distance2);

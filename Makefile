@@ -1,6 +1,10 @@
-all: setup_ultrasonic main
+all: ultrasonic servo main
 
 main: main.c
 	gcc main.c -o ./build/main
-setup_ultrasonic: setup_ultrasonic.c
-	gcc setup_ultrasonic.c -o ./build/setup_ultrasonic
+
+ultrasonic: setup_ultrasonic.c
+	gcc ultrasonic.c -o ./build/ultrasonic
+
+servo: servo.c
+	gcc servo.c -o ./build/servo
